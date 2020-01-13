@@ -1,0 +1,47 @@
+#! /home/user/env python
+# coding: utf-8
+#
+## USAGE:
+# 1) make a new directory and move merged output file created by the previous script there
+# 2) run script as follows: $ python aCGH_03_exclude-chimeric.py /ABSOLUTE/PATH/TO/INPUT/File.txt
+## NOTE:
+# Adjust treshold if needed (default = 0.5).
+#
+##ANALYSIS
+#01) PREPARE WORKSPACE AND LOAD FILES
+
+import sys
+import os
+import re
+
+speciesName = input("Input abbreviation of species: ")
+
+inputFile = sys.argv[1]
+
+#02) SET TRESHOLD
+treshold = "0.50" #adjust treshold here if necessary
+print("Treshold for analysis is: " + treshold)
+
+#03) CHECK INTEGRITY OF PROBES
+outFileName = speciesName + "_probesOK.txt"
+outFileChimeric = speciesName + "_probesCHIMERIC.txt"
+print("Working on following file: " + inputFile)
+
+with open(inputFile, 'r') as inFile, open(outFileName, 'w') as outOK, open(outFileChimeric, 'w') as outChimeric:
+    for line in inFile:
+        splitRow = line.split('\t')
+        probeID = splitRow[0]
+        values = splitRow[1:]
+        Floats = [float(i) for i in values]
+
+        if all(f >= float(treshold) for f in Floats) or all(f < float(treshold) for f in Floats) == True:
+            outOK.write(line)
+        else:
+            outChimeric.write(line)
+            
+inFile.close()
+outOK.close()
+outChimeric.close()
+
+print("Job done.")
+
