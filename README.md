@@ -1,2 +1,2 @@
 # aCGH_scripts
-Working scripts used for array-CGH outputs processing
+# Working scripts used for array-CGH outputs processing
