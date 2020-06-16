@@ -9,6 +9,7 @@
 ##ANALYSIS
 #01) PREPARE WORKSPACE AND LOAD INPUT FILES
 
+import time
 import sys, getopt
 import os
 import re
