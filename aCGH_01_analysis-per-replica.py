@@ -19,7 +19,7 @@ pathToProbes = sys.argv[2]
 speciesName = input("Please input abbreviation of your species: ")
 
 timestamp = time.strftime("%d/%m/%Y %H:%M")
-print("aCGH analysis of" + species + ", started " + timestamp + "."
+print("aCGH analysis of" + speciesName + ", started " + timestamp + "."
 "Loading raw files from:" + inputDir + "."
 "Loading probes from"  + pathToProbes + ".")
 
